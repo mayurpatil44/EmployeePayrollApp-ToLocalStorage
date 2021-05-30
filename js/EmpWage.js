@@ -1,28 +1,31 @@
-const salary=document.querySelector('#salary');
-const output=document.querySelector('.salary-output');
-output.textContent=salary.value;
-salary.addEventListener('input',function()
-{
-   output.textContent=salary.value;
-});
-const text=document.querySelector('#text');
-const textError=document.querySelector('.text-error');
-text.addEventListener('input',function()
-        {
-            let nameRegex=RegExp('^[A-Z]{1}[a-z]{2,}$');
-            if(nameRegex.test(text.value))
-            textError.textContent="";
-            else 
-            textError.textContent="Name is incorrect";
-        });
-const date=document.querySelector("#date");
-const dateError = document.querySelector(".date-error");
-dateError.textContent="";
-date.addEventListener('input',function(){
-    let now = new Date();
-    if (startDate > now) 
-    dateError.textContent= "Start Date is a Future Date!";
-    var diff = Math.abs(now.getTime() - startDate.getTime());
-    if (diff / (1000 * 60 * 60 * 24) > 30) 
-     dateError.textContent= "Start Date is beyond 30 Days!";
+window.addEventListener('DOMContentLoaded', (event) => {
+    const name = document.querySelector('#name');
+    name.addEventListener('input', function() {
+        if(name.value.length == 0) {
+            setTextValue('.text-error', "");
+            return;
+        }
+        try {
+            (new EmployeePayRoll()).name = name.value;
+            setTextValue('.text-error', "");
+        } catch (e) {
+            setTextValue('.text-error', e);
+        }
+    });
+    const date = document.querySelector('#date');
+    date.addEventListener('input', function() {
+        let startDate = getInputValueById('#day')+" "+getInputValueById('#month')+" "+
+                      getInputValueById('#year') ;
+        try {
+            (new EmployeePayRoll()).startDate = new Date(Date.parse(startDate));
+            setTextValue('.date-error', "");
+        } catch (e) {
+            setTextValue('.date-error', e);
+        }
+    });
+    const salary = document.querySelector('#salary');
+    setTextValue('.salary-output', salary.value);
+    salary.addEventListener('input', function() {
+        setTextValue('.salary-output', salary.value);
+    });
 });
