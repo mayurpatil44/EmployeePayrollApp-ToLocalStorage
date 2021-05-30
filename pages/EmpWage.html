@@ -16,11 +16,12 @@
         </div>
         </header>
         <div class ="form-content">
-            <form class ="form" action="#",onsubmit="save();return false">
+            <form class ="form" onsubmit="save()" onreset="resetForm()">
                 <div class="form-head">Employee Payroll Form</div>
                 <div class ="row-content">
                     <label class="label-text" for ="name">Name</label>
                     <input class ="input" type="text" id="name" name="name" required>
+                    <error-output class ="text-error" for="name"></error-output>
                 </div>
                 <div class = "row-content">
                     <label class ="label-text" for="profile">Profile Images</label>
@@ -37,7 +38,7 @@
                 </div>  
                 <div class="row-content">
                     <label class="label text" for="gender">Gender</label> 
-                    <div>   
+                    <div> 
                         <input type="radio" id="male" name="gender" value="male">
                         <label class="text" for="male">Male</label> 
                         <input type="radio" id="female" name="gender" value="female">
@@ -62,7 +63,7 @@
                 <div class="row-content"> 
                     <label class="label text" for="salary">Choose your salary: </label> 
                     <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100" value="400000">
-                    <output class="salary-output text" for="salary">400000</output> 
+                    <output class="salary-output" for="salary">400000</output> 
                 </div>
                 <div class="row-content">
                     <label class="label text" for="startDate">Start Date</label>
@@ -141,3 +142,4 @@
         <script src="../js/EmployeeDetails.js"></script>
     </body>
 </html>
+© 2021 GitHub, Inc.
